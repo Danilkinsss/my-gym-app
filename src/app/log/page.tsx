@@ -108,13 +108,32 @@ export default function LogPage() {
             <h2 className="font-semibold w-fit text-xl">Workouts:</h2>
             <div className="bg-orange-200 p-4 rounded-md">
               {workouts.length !== 0 ? (
-                <ul>
+                <ul className="flex flex-col gap-2">
                   {workouts.map((w) => (
-                    <li key={w.id}>
-                      <strong>{w.exercise}</strong>
-                      <p>
-                        {w.sets} × {w.reps} reps of {w.weight}kgs
-                      </p>
+                    <li
+                      key={w.id}
+                      className="flex flex-row place-items-end gap-4 justify-between"
+                    >
+                      <div className="flex flex-col gap-2">
+                        <strong>{w.exercise}</strong>
+                        <p>
+                          {w.sets} × {w.reps} reps of {w.weight}kgs
+                        </p>
+                      </div>
+                      <button
+                        type="submit"
+                        className="bg-red-400 h-fit p-2 text-white rounded hover:opacity-90 cursor-pointer"
+                        onClick={() => {
+                          console.log(w.id)
+                          setWorkouts([
+                            ...workouts.filter(
+                              (workout) => workout.id !== w.id
+                            ),
+                          ])
+                        }}
+                      >
+                        Remove
+                      </button>
                     </li>
                   ))}
                 </ul>
