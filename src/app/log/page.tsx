@@ -39,14 +39,22 @@ export default function LogPage() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center p-4">
-      <main className="bg-orange-100 h-auto flex flex-col gap-5 p-9 items-center sm:w-auto w-full mx-7 my-5 rounded-xl border-orange-200 border-4">
+    <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center p-4">
+      <main className="bg-orange-100 h-auto flex flex-col gap-5 p-9 items-center sm:w-auto w-full mx-7 my-5 rounded-xl  dark:bg-teal-950 dark:border-teal-900 border-2">
         <h1 className="font-semibold w-fit text-4xl">Log Page</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="font-semibold w-fit text-xl">Add exercise:</h2>
-            <form onSubmit={handleSubmit} className=" flex flex-col gap-3 ">
-              <label htmlFor="exercise" className="text-sm font-medium">
+            <h2 className="font-semibold w-fit text-xl font-mono">
+              Add exercise:
+            </h2>
+            <form
+              onSubmit={handleSubmit}
+              className=" flex flex-col gap-3 text-sm"
+            >
+              <label
+                htmlFor="exercise"
+                className="text-sm font-medium font-mono"
+              >
                 Exercise Name
               </label>
               <input
@@ -54,11 +62,11 @@ export default function LogPage() {
                 placeholder="e.g. Bench press"
                 value={exercise}
                 onChange={(e) => setExercise(e.target.value)}
-                className="w-full p-2 border rounded bg-amber-200"
+                className="w-full p-2 border-2 rounded bg-teal-200 dark:bg-teal-800 border-teal-600"
                 required
               />
 
-              <label htmlFor="sets" className="text-sm font-medium">
+              <label htmlFor="sets" className="text-sm font-medium font-mono">
                 Number of sets
               </label>
               <input
@@ -66,12 +74,12 @@ export default function LogPage() {
                 placeholder="Ideally 2-5"
                 value={sets}
                 onChange={(e) => setSets(e.target.value)}
-                className="w-full p-2 border rounded bg-amber-200"
+                className="w-full p-2 border-2 rounded bg-teal-200 dark:bg-teal-800 border-teal-600"
                 min={1}
                 required
               />
 
-              <label htmlFor="reps" className="text-sm font-medium">
+              <label htmlFor="reps" className="text-sm font-medium font-mono">
                 Number of reps
               </label>
               <input
@@ -79,12 +87,12 @@ export default function LogPage() {
                 placeholder="Ideally 5-20"
                 value={reps}
                 onChange={(e) => setReps(e.target.value)}
-                className="w-full p-2 border rounded bg-amber-200"
+                className="w-full p-2 border-2 rounded bg-teal-200 dark:bg-teal-800 border-teal-600"
                 min={0}
                 required
               />
 
-              <label htmlFor="reps" className="text-sm font-medium">
+              <label htmlFor="reps" className="text-sm font-medium font-mono">
                 Weight in kg
               </label>
               <input
@@ -92,21 +100,21 @@ export default function LogPage() {
                 placeholder="No PR maxes"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
-                className="w-full p-2 border rounded bg-amber-200"
+                className="w-full p-2 border-2 rounded bg-teal-200 dark:bg-teal-800 border-teal-600"
                 min={0}
                 required
               />
               <button
                 type="submit"
-                className="bg-orange-300 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer "
+                className="bg-teal-300/70 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer "
               >
                 Add
               </button>
             </form>
           </div>
           <div className="w-full flex flex-col gap-4">
-            <h2 className="font-semibold w-fit text-xl">Workouts:</h2>
-            <div className="bg-orange-200 p-4 rounded-md">
+            <h2 className="font-medium font-mono w-fit text-xl">Workouts:</h2>
+            <div className="bg-teal-500 p-4 rounded-md">
               {workouts.length !== 0 ? (
                 <ul className="flex flex-col gap-2">
                   {workouts.map((w) => (
@@ -115,9 +123,9 @@ export default function LogPage() {
                       className="flex flex-row place-items-end gap-4 justify-between"
                     >
                       <div className="flex flex-col gap-2">
-                        <strong>{w.exercise}</strong>
+                        <p className="font-light">{'"' + w.exercise + '"'}</p>
                         <p>
-                          {w.sets} × {w.reps} reps of {w.weight}kgs
+                          {w.sets} × {w.reps} reps of {w.weight}kg
                         </p>
                       </div>
                       <button
@@ -132,7 +140,7 @@ export default function LogPage() {
                           ])
                         }}
                       >
-                        Remove
+                        🗑️
                       </button>
                     </li>
                   ))}
@@ -143,7 +151,7 @@ export default function LogPage() {
             </div>
           </div>
         </div>
-        <Link href="/" className="text-blue-500 hover:text-blue-600">
+        <Link href="/" className="text-gray-300 hover:text-gray-400">
           ← Home
         </Link>
       </main>
