@@ -40,7 +40,7 @@ export default function LogPage() {
 
   return (
     <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center p-4">
-      <main className="bg-orange-100 h-auto flex flex-col gap-5 p-9 items-center sm:w-auto w-full mx-7 my-5 rounded-xl  dark:bg-teal-950 dark:border-teal-900 border-2">
+      <main className="bg-teal-200/60 border-teal-500/40 h-auto flex flex-col gap-5 p-9 items-center sm:w-auto w-full mx-7 my-5 rounded-xl  dark:bg-teal-950 dark:border-teal-900 border-2">
         <h1 className="font-semibold w-fit text-4xl">Log Page</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className="flex flex-col gap-4">
@@ -106,7 +106,7 @@ export default function LogPage() {
               />
               <button
                 type="submit"
-                className="bg-teal-300/70 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer "
+                className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer"
               >
                 Add
               </button>
@@ -146,12 +146,12 @@ export default function LogPage() {
                   ))}
                 </ul>
               ) : (
-                <p>Nothing here yet</p>
+                <p className="text-white ">Nothing here yet</p>
               )}
             </div>
           </div>
         </div>
-        <Link href="/" className="text-gray-300 hover:text-gray-400">
+        <Link href="/" className="text-gray-400 hover:text-gray-400/70">
           ← Home
         </Link>
       </main>
