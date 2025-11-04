@@ -38,6 +38,23 @@ export default function LogPage() {
     setWeight('')
   }
 
+  function runAdd() {
+    fetch('/api/workouts', { method: 'POST' })
+      .then((res) => {
+        console.log('Frontend: Response status:', res.status)
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`)
+        }
+        return res.json()
+      })
+      .then((data) => {
+        console.log('Frontend: Received data:', data)
+      })
+      .catch((err) => {
+        console.error('Frontend: Failed to create a workout:', err)
+      })
+  }
+
   return (
     <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center p-4">
       <main className="bg-teal-200/60 border-teal-500/40 h-auto flex flex-col gap-5 p-9 items-center sm:w-auto w-full mx-7 my-5 rounded-xl  dark:bg-teal-950 dark:border-teal-900 border-2">
@@ -107,6 +124,10 @@ export default function LogPage() {
               <button
                 type="submit"
                 className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer"
+                onClick={() => {
+                  console.log('adding a new one')
+                  runAdd()
+                }}
               >
                 Add
               </button>
