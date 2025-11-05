@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
-
+import { useRouter } from 'next/navigation'
 interface Workout {
   exercise: string
   sets: number
@@ -10,7 +10,9 @@ interface Workout {
   id: number
 }
 
-export default function LogPage() {
+export default function NewWorkoutPage() {
+  const router = useRouter()
+
   const [exercise, setExercise] = useState('')
   const [sets, setSets] = useState('')
   const [reps, setReps] = useState('')
@@ -38,7 +40,7 @@ export default function LogPage() {
     setWeight('')
   }
 
-  function runAdd() {
+  function handleClick() {
     fetch('/api/workouts', { method: 'POST' })
       .then((res) => {
         console.log('Frontend: Response status:', res.status)
@@ -48,7 +50,8 @@ export default function LogPage() {
         return res.json()
       })
       .then((data) => {
-        console.log('Frontend: Received data:', data)
+        console.log('Frontend: Created workout:', data)
+        router.push(`/workouts/${data.id}`)
       })
       .catch((err) => {
         console.error('Frontend: Failed to create a workout:', err)
@@ -58,7 +61,7 @@ export default function LogPage() {
   return (
     <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center p-4">
       <main className="bg-teal-200/60 border-teal-500/40 h-auto flex flex-col gap-5 p-9 items-center sm:w-auto w-full mx-7 my-5 rounded-xl  dark:bg-teal-950 dark:border-teal-900 border-2">
-        <h1 className="font-semibold w-fit text-4xl">Log Page</h1>
+        <h1 className="font-semibold w-fit text-4xl">New Workout Page</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className="flex flex-col gap-4">
             <h2 className="font-semibold w-fit text-xl font-mono">
@@ -124,17 +127,15 @@ export default function LogPage() {
               <button
                 type="submit"
                 className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer"
-                onClick={() => {
-                  console.log('adding a new one')
-                  runAdd()
-                }}
               >
                 Add
               </button>
             </form>
           </div>
           <div className="w-full flex flex-col gap-4">
-            <h2 className="font-medium font-mono w-fit text-xl">Workouts:</h2>
+            <h2 className="font-medium font-mono w-fit text-xl">
+              Workout sets:
+            </h2>
             <div className="bg-teal-500 p-4 rounded-md">
               {workouts.length !== 0 ? (
                 <ul className="flex flex-col gap-2">
@@ -172,6 +173,13 @@ export default function LogPage() {
             </div>
           </div>
         </div>
+        <button
+          // type="submit"
+          className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer"
+          onClick={handleClick}
+        >
+          Save
+        </button>
         <Link href="/" className="text-gray-400 hover:text-gray-400/70">
           ← Home
         </Link>

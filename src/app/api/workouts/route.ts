@@ -20,6 +20,7 @@ export async function GET() {
     return Response.json({ error: 'Failed to fetch workouts' }, { status: 500 })
   }
 }
+
 export async function POST(request: Request) {
   try {
     const newWorkout = await prisma.workout.create({

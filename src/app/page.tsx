@@ -2,9 +2,10 @@ import Link from 'next/link'
 
 export default function Home() {
   const categoriezedExercises: { [key: string]: string[] } = {
-    Legs: ['Hip abdusction', 'Hip adduction'],
-    Push: ['Pushups', 'Push presses'],
-    Pull: ['Pullups', 'Pull downs'],
+    'Total Workouts': ['12'],
+    'This Week': ['3'],
+    Button1: ['Log Workout', '→ /workouts/new'],
+    Button2: ['View History', '→ /workouts'],
   }
 
   return (
@@ -17,7 +18,7 @@ export default function Home() {
           <p className=" w-fit text-xl font-mono">Tracking my activity</p>
         </div>
         <div className="w-full bg-rose-300/80 border-pink-500/50 dark:bg-pink-950 dark:border-pink-800  border-2 rounded-lg p-4 gap-2 flex flex-col">
-          <h1 className="font-thin w-fit text-xl">Exercises:</h1>
+          <h1 className="font-thin w-fit text-xl">Content:</h1>
           <ul className="flex flex-col gap-2 px-6">
             {Object.entries(categoriezedExercises).map(
               ([category, exercises]) => (
@@ -53,10 +54,10 @@ export default function Home() {
         <div className="pb-5 flex justify-center">
           <nav className="self-center gap-6 flex flex-row">
             <Link
-              href="/log"
+              href="/workouts/new"
               className="block p-4 bg-blue-500 border-gray-500/50 dark:bg-blue-900 border-2 dark:border-blue-700/50 hover:opacity-90 text-white  rounded"
             >
-              Log Workout
+              New Workout
             </Link>
             <Link
               href="/workouts"

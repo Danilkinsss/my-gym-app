@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 import { Workout, Set, Exercise } from '@/generated/prisma'
 
@@ -34,9 +35,28 @@ type WorkoutWithSets = Workout & {
 }
 
 export default function WorkoutsPage() {
+  const router = useRouter()
   const [workouts, setWorkouts] = useState<WorkoutWithSets[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // async function handleClick() {
+  //   fetch('/api/workouts', { method: 'POST' })
+  //     .then((res) => {
+  //       console.log('Frontend: Response status:', res.status)
+  //       if (!res.ok) {
+  //         throw new Error(`HTTP error! status: ${res.status}`)
+  //       }
+  //       return res.json()
+  //     })
+  //     .then((data) => {
+  //       console.log('Frontend: Received data:', data)
+  //       window.location.href = `/workouts/${data.id}`
+  //     })
+  //     .catch((err) => {
+  //       console.error('Frontend: Failed to create a workout:', err)
+  //     })
+  // }
 
   useEffect(() => {
     console.log('Frontend: Fetching workouts...')
@@ -87,7 +107,7 @@ export default function WorkoutsPage() {
 
   return (
     <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center">
-      <main className="h-auto flex flex-col gap-5 p-9 bg-violet-400/70 border-violet-600/50 items-center text-center w-auto rounded-xl  dark:bg-sky-950 dark:border-sky-900 border-2">
+      <main className="my-2 h-auto flex flex-col gap-5 p-9 bg-violet-400/70 border-violet-600/50 items-center text-center w-auto rounded-xl  dark:bg-sky-950 dark:border-sky-900 border-2">
         <h1 className="font-semibold w-fit text-4xl">Workouts Page</h1>
         {workouts.length === 0 ? (
           <div className="text-center">
@@ -127,19 +147,40 @@ export default function WorkoutsPage() {
                           key={set.id}
                           className="text-gray-700 dark:text-gray-300"
                         >
-                          {set.exercise.name}: {set.reps} reps @ {set.weight}kg
+                          {set.exercise.name}: {set.reps} reps x {set.weight}kg
                         </li>
                       ))}
                     </ul>
+                    <div className="pb-5 flex justify-center">
+                      <button
+                        className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
+                      block p-4  dark:bg-green-900  dark:border-green-700/50   "
+                        onClick={() => {
+                          router.push('/workouts/' + workout.id)
+                        }}
+                      >
+                        See
+                      </button>
+                    </div>
                   </div>
                 )}
               </li>
             ))}
           </ul>
         )}
-        <Link href="/" className="text-gray-400 hover:text-gray-400/70">
-          ← Home
-        </Link>
+
+        <div className="pb-5 flex justify-center">
+          <button
+            type="submit"
+            className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
+            block p-4  dark:bg-green-900  dark:border-green-700/50   "
+            onClick={() => {
+              router.push('/workouts/new')
+            }}
+          >
+            New Workout
+          </button>
+        </div>
       </main>
     </div>
   )
