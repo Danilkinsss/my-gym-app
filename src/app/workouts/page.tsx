@@ -169,7 +169,7 @@ export default function WorkoutsPage() {
           </ul>
         )}
 
-        <div className="pb-5 flex justify-center">
+        <div className="flex flex-col justify-center gap-2">
           <button
             type="submit"
             className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
@@ -180,6 +180,12 @@ export default function WorkoutsPage() {
           >
             New Workout
           </button>
+          <Link
+            href="/"
+            className="text-gray-400 hover:text-gray-400/70 self-center"
+          >
+            ← Home
+          </Link>
         </div>
       </main>
     </div>

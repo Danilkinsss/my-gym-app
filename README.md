@@ -37,14 +37,42 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Current Plan:
 
--Finish "/workouts -> /wokrouts/new -> /workouts/[id]" flow:
+1. Finish "/workouts -> /workouts/new -> /workouts/[id]" flow:
 
 ```bash
+05/11
 # add all pages✅
-- add the form
-- make the form functional
--
+# add the form✅
+06/11
+# make the form functional✅
+# add GET API for exercises✅
+# connect GET to list of available exercises✅
+#
+# --- task 1 complete ---
+#
 ```
 
--
--
+2. Continue working on CRUDs: Update for all(workout, set, exercise?), Delete for all(workout, set, exercise?), Create for exercise
+
+```bash
+- add DELETE for Workouts(button + on page)
+- add UPDATE for Workouts(page): adding new set, updating and deleting existing sets(but for now just editing workout "notes"!!! and maybe "date")
+- add CREATE for Exercise(page?)
+- add DELETE for Exercise(button on page)
+- add /exercises page with the list of them
+- think of a better Prisma Schema - "notes" + "names" for Workouts; better use of "category" of Exercise; add "note" to Sets and Exercise(rename description?)
+```
+
+3. Deploy
+
+```bash
+- deploy on Vercel(decide which production db to use: Firebase/Supabase/Neon)
+```
+
+4. Add all "wanted" content, fix styles(add library: shadcn?) and hydration errors
+
+```bash
+- add to main page proper content
+- resolve hydration issue
+- add screenshots
+```
