@@ -228,7 +228,7 @@ export default function NewWorkoutPage() {
               Workout sets:
             </h2>
             <div className="bg-teal-500 p-4 rounded-md">
-              {workout.sets.length !== 0 ? (
+              {workout?.sets.length !== 0 ? (
                 <ul className="flex flex-col gap-2">
                   {workout.sets.map((s) => (
                     <li

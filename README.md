@@ -55,7 +55,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 2. Continue working on CRUDs: Update for all(workout, set, exercise?), Delete for all(workout, set, exercise?), Create for exercise
 
 ```bash
-- add DELETE for Workouts(button + on page)
+# add DELETE for Workouts(button on page)✅
 - add UPDATE for Workouts(page): adding new set, updating and deleting existing sets(but for now just editing workout "notes"!!! and maybe "date")
 - add CREATE for Exercise(page?)
 - add DELETE for Exercise(button on page)

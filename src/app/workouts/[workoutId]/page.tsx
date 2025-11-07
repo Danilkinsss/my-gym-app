@@ -21,7 +21,7 @@ export default function WorkoutDetails() {
 
   useEffect(() => {
     if (!workoutId) return
-    console.log('Frontend: Fetching workout...', workoutId)
+    console.log('Frontend: Fetching a workout...', workoutId)
     fetch(`/api/workouts/${workoutId}`, { method: 'GET' })
       .then((res) => {
         console.log('Frontend: Response status:', res.status)
@@ -36,7 +36,7 @@ export default function WorkoutDetails() {
         setLoading(false)
       })
       .catch((err) => {
-        console.error('Frontend: Failed to fetch workouts:', err)
+        console.error('Frontend: Failed to fetch a workout:', err)
         setError(err.message)
         setLoading(false)
       })
@@ -68,12 +68,34 @@ export default function WorkoutDetails() {
 
   // If workoutId needs to be shown, and workout is fetched, display data if available
 
+  const hadleDelete = () => {
+    console.log('Frontend: Deleting a workout...', workoutId)
+    setLoading(true)
+    fetch(`/api/workouts/${workoutId}`, { method: 'DELETE' })
+      .then((res) => {
+        console.log('Frontend: Response status:', res.status)
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`)
+        }
+        return res.json()
+      })
+      .then((data) => {
+        console.log('Frontend: Deleted data:', data)
+        router.push('/workouts')
+      })
+      .catch((err) => {
+        console.error('Frontend: Failed to delete workout:', err)
+        setError(err.message)
+        setLoading(false)
+      })
+  }
+
   return (
     <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center">
       {workout ? (
         <div
           key={workout.id}
-          className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow"
+          className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow flex flex-col gap-2"
         >
           <div className="mb-2">
             <span className="font-bold">Workout #{workout.id}</span>
@@ -99,16 +121,28 @@ export default function WorkoutDetails() {
             </div>
           )}
 
-          <div className="pb-5 flex justify-center">
-            <button
-              className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
-            block p-4  dark:bg-green-900  dark:border-green-700/50   "
-              onClick={() => {
-                router.push('/workouts')
-              }}
-            >
-              Back
-            </button>
+          <div className="flex gap-2">
+            <div className="flex justify-center">
+              <button
+                className="bg-rose-300/70 border-rose-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
+            block p-4  dark:bg-red-900  dark:border-red-700/50   "
+                onClick={hadleDelete}
+              >
+                Delete
+              </button>
+            </div>
+
+            <div className="flex justify-center">
+              <button
+                className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
+              block p-4  dark:bg-green-900  dark:border-green-700/50   "
+                onClick={() => {
+                  router.push('/workouts')
+                }}
+              >
+                Back
+              </button>
+            </div>
           </div>
         </div>
       ) : (

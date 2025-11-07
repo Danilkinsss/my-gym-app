@@ -151,19 +151,20 @@ export default function WorkoutsPage() {
                         </li>
                       ))}
                     </ul>
-                    <div className="pb-5 flex justify-center">
-                      <button
-                        className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
-                      block p-4  dark:bg-green-900  dark:border-green-700/50   "
-                        onClick={() => {
-                          router.push('/workouts/' + workout.id)
-                        }}
-                      >
-                        See
-                      </button>
-                    </div>
                   </div>
                 )}
+
+                <div className="flex justify-center">
+                  <button
+                    className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer
+                      block p-4  dark:bg-green-900  dark:border-green-700/50   "
+                    onClick={() => {
+                      router.push('/workouts/' + workout.id)
+                    }}
+                  >
+                    See
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
