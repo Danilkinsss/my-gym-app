@@ -15,9 +15,14 @@ export default function WorkoutDetails() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [workout, setWorkout] = useState<WorkoutWithSets | null>(null)
+
   const { workoutId } = useParams<{ workoutId: string }>()
 
   const router = useRouter()
+  const [renameField, setRenameField] = useState<string | null | undefined>(
+    workout?.notes
+  )
+  const [openRenameField, setOpenRenameField] = useState(false)
 
   useEffect(() => {
     if (!workoutId) return
@@ -32,6 +37,7 @@ export default function WorkoutDetails() {
       })
       .then((data) => {
         console.log('Frontend: Received data:', data)
+        setRenameField(data.notes)
         setWorkout(data)
         setLoading(false)
       })
@@ -89,6 +95,36 @@ export default function WorkoutDetails() {
         setLoading(false)
       })
   }
+  const handleRename = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Frontend: Renaming the workout...', workoutId)
+    setLoading(true)
+    fetch(`/api/workouts/${workoutId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ notes: renameField || '' }),
+    })
+      .then((res) => {
+        console.log('Frontend: Response status:', res.status)
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`)
+        }
+        return res.json()
+      })
+      .then((data) => {
+        console.log('Frontend: Renamed data:', data)
+        setWorkout(data)
+        setOpenRenameField(false)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error('Frontend: Failed to rename workout:', err)
+        setError(err.message)
+        setLoading(false)
+      })
+  }
 
   return (
     <div className="bg-orange-100 dark:bg-gray-900 min-h-screen flex justify-center items-center">
@@ -104,8 +140,51 @@ export default function WorkoutDetails() {
             </span>
           </div>
 
-          {workout.notes && (
-            <div className="text-sm text-gray-600 mb-2">{workout.notes}</div>
+          {!openRenameField ? (
+            <div>
+              {workout.notes && (
+                <div className="text-sm text-gray-600">{workout.notes}</div>
+              )}
+              <button
+                className="underline text-sm text-gray-500 cursor-pointer"
+                onClick={() => {
+                  setOpenRenameField(true)
+                }}
+              >
+                Rename
+              </button>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleRename}
+              className="flex flex-col gap-3 text-sm"
+            >
+              <input
+                type="string"
+                placeholder="New name"
+                value={renameField ? renameField : ''}
+                onChange={(e) => setRenameField(e.target.value)}
+                className="w-full p-2 border-2 rounded bg-teal-200 dark:bg-teal-800 border-teal-600"
+                required
+              />
+              <div className="flex gap-2 justify-center">
+                <button
+                  type="button"
+                  className="bg-rose-300/70 border-rose-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer"
+                  onClick={() => {
+                    setOpenRenameField(false)
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-teal-300/70 border-teal-500/30 border-2 h-fit py-2 text-white rounded hover:opacity-90 cursor-pointer"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
           )}
 
           {workout.sets.length > 0 && (

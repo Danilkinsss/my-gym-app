@@ -56,7 +56,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ```bash
 # add DELETE for Workouts(button on page)✅
-- add UPDATE for Workouts(page): adding new set, updating and deleting existing sets(but for now just editing workout "notes"!!! and maybe "date")
+# add UPDATE for Workouts(page): adding new set, updating and deleting existing sets(but for now just editing workout "notes"!!! and maybe "date" -> only "notes"/name editing was added)✅
 - add CREATE for Exercise(page?)
 - add DELETE for Exercise(button on page)
 - add /exercises page with the list of them
@@ -74,5 +74,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ```bash
 - add to main page proper content
 - resolve hydration issue
+- style browser tab(naming + icon)
 - add screenshots
 ```
