@@ -114,7 +114,7 @@ export default function WorkoutsPage() {
             <p className="text-gray-600 mb-4">
               No workouts yet. Start logging!
             </p>
-            <Link href="/log" className="text-blue-600 underline">
+            <Link href="/workouts/new" className="text-blue-600 underline">
               Log a workout →
             </Link>
           </div>

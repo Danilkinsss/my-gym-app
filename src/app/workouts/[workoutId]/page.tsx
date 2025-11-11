@@ -95,6 +95,7 @@ export default function WorkoutDetails() {
         setLoading(false)
       })
   }
+
   const handleRename = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Frontend: Renaming the workout...', workoutId)

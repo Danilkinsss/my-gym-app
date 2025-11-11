@@ -64,16 +64,3 @@ export async function POST(request: Request) {
     )
   }
 }
-
-// export async function POST(request: Request) {
-//   try {
-//     const { name, description } = await request.json()
-//     const workout = await prisma.workout.create({
-//       data: { name, description },
-//     })
-//     return Response.json(workout)
-//   } catch (error) {
-//     console.error('Error creating workout:', error)
-//     return Response.json({ error: 'Failed to create workout' }, { status: 500 })
-//   }
-// }

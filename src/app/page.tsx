@@ -51,21 +51,34 @@ export default function Home() {
           </button>
         </div> */}
 
-        <div className="pb-5 flex justify-center">
-          <nav className="self-center gap-6 flex flex-row">
-            <Link
-              href="/workouts/new"
-              className="block p-4 bg-blue-500 border-gray-500/50 dark:bg-blue-900 border-2 dark:border-blue-700/50 hover:opacity-90 text-white  rounded"
-            >
-              New Workout
-            </Link>
-            <Link
-              href="/workouts"
-              className="block p-4 bg-green-500 border-gray-500/50 dark:bg-green-900 border-2 dark:border-green-700/50 hover:opacity-90 text-white rounded"
-            >
-              View Workouts
-            </Link>
-          </nav>
+        <div className="pb-5 flex flex-col gap-5">
+          <div className="flex justify-center px-5">
+            <nav className="self-center gap-6 flex flex-row">
+              <Link
+                href="/workouts/new"
+                className="block p-4 bg-blue-500 border-gray-500/50 dark:bg-blue-900 border-2 dark:border-blue-700/50 hover:opacity-90 text-white  rounded"
+              >
+                New Workout
+              </Link>
+              <Link
+                href="/workouts"
+                className="block p-4 bg-green-500 border-gray-500/50 dark:bg-green-900 border-2 dark:border-green-700/50 hover:opacity-90 text-white rounded"
+              >
+                View Workouts
+              </Link>
+            </nav>
+          </div>
+
+          <div className="flex justify-center px-5">
+            <nav className="self-center gap-6 flex flex-row w-full">
+              <Link
+                href="/exercises"
+                className="block p-4 bg-orange-500 border-orange-500/50 dark:bg-orange-900 border-2 dark:border-orange-700/40 hover:opacity-90 text-white  rounded w-full text-center"
+              >
+                View Exercises
+              </Link>
+            </nav>
+          </div>
         </div>
       </main>
       <footer className="bg-blue-400"></footer>

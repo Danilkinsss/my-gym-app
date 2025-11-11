@@ -57,16 +57,19 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ```bash
 # add DELETE for Workouts(button on page)✅
 # add UPDATE for Workouts(page): adding new set, updating and deleting existing sets(but for now just editing workout "notes"!!! and maybe "date" -> only "notes"/name editing was added)✅
-- add CREATE for Exercise(page?)
-- add DELETE for Exercise(button on page)
-- add /exercises page with the list of them
-- think of a better Prisma Schema - "notes" + "names" for Workouts; better use of "category" of Exercise; add "note" to Sets and Exercise(rename description?)
+# add /exercises page with the list of them✅
+# add CREATE for Exercise(page? - no, form)✅ - didn't add create for category❌
+# add /exercise page button on main (/)✅
+# add DELETE for Exercise(button on page)✅
+# add POST for Exercise?❌ - maybe later
 ```
 
 3. Deploy
 
 ```bash
 - deploy on Vercel(decide which production db to use: Firebase/Supabase/Neon)
+
+- think of a better Prisma Schema - "notes" + "names" for Workouts; better use of "category" of Exercise; add "note" to Sets and Exercise(rename description?)
 ```
 
 4. Add all "wanted" content, fix styles(add library: shadcn?) and hydration errors
