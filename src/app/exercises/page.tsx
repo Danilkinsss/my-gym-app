@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { Exercise } from '@/generated/prisma'
+import { Exercise } from '@prisma/client'
 
 export default function ExercisesPage() {
   const [exercises, setExercises] = useState<Exercise[]>([])

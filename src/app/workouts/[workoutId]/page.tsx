@@ -1,6 +1,6 @@
 'use client'
 
-import { Workout, Set, Exercise } from '@/generated/prisma'
+import { Workout, Set, Exercise } from '@prisma/client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'

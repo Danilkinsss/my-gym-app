@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { Exercise } from '@/generated/prisma'
+import { Exercise } from '@prisma/client'
 interface TempSet {
   id?: number
   exercise?: string

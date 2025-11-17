@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { Workout, Set, Exercise } from '@/generated/prisma'
+import { Workout, Set, Exercise } from '@prisma/client'
 
 // Define types locally (simpler than importing from Prisma)
 // type Exercise = {
