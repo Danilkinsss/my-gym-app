@@ -4,6 +4,7 @@ import { Workout, Set, Exercise } from '@prisma/client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { formatDateEU } from '@/lib/formatDate'
 
 type WorkoutWithSets = Workout & {
   sets: (Set & {
@@ -137,7 +138,7 @@ export default function WorkoutDetails() {
           <div className="mb-2">
             <span className="font-bold">Workout #{workout.id}</span>
             <span className="text-sm text-gray-500 ml-2">
-              {new Date(workout.createdAt).toLocaleDateString()}
+              {formatDateEU(workout.createdAt)}
             </span>
           </div>
 

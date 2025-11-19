@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { Workout, Set, Exercise } from '@prisma/client'
+import { formatDateEU } from '@/lib/formatDate'
 
 // Define types locally (simpler than importing from Prisma)
 // type Exercise = {
@@ -128,7 +129,7 @@ export default function WorkoutsPage() {
                 <div className="mb-2">
                   <span className="font-bold">Workout #{workout.id}</span>
                   <span className="text-sm text-gray-500 ml-2">
-                    {new Date(workout.createdAt).toLocaleDateString()}
+                    {formatDateEU(workout.createdAt)}
                   </span>
                 </div>
 
