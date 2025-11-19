@@ -1,6 +1,6 @@
-import { PrismaClient, Set } from '@prisma/client'
+import { Set } from '@prisma/client'
 
-const prisma = new PrismaClient()
+import { prisma } from '../../../../lib/prisma'
 
 export async function GET() {
   console.log('=== STARTING WORKOUT FETCH ===')
